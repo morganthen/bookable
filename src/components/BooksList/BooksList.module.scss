@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  &__message {
+    font-size: 0.9rem;
+    text-align: center;
+  }
 }
 
 .section {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import BooksList from "../BooksList/BooksList";
 import { getBooksBySearchTerm } from "../../utils/getBooksBySearchTerm.js";
+import classes from "./BooksContainer.module.scss";
+import { useBook } from "../../hooks/useBook.jsx";
 
 export default function BooksContainer({ searchTerm }) {
   const [books, setBooks] = useState(null);
@@ -8,7 +10,7 @@ export default function BooksContainer({ searchTerm }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (searchTerm === null) {
+    if (searchTerm === null || searchTerm === "") {
       return;
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -25,20 +27,16 @@ export default function BooksContainer({ searchTerm }) {
       });
   }, [searchTerm]);
 
-  console.log(books);
+  useEffect(() => {
+    console.log(books);
+  }, [books]);
 
-  if (status === "idle") {
-    return <p>Search for books...</p>;
-  }
-
-  if (status === "loading") {
-    return <p>...loading...</p>;
-  }
-  if (status === "error") {
-    return <p style={{ color: "red" }}>{error.message}</p>;
-  }
-
-  if (status === "success") {
-    return <BooksList term={searchTerm} books={books} />;
-  }
+  return (
+    <div className={classes.container}>
+      {status === "idle" && <p>Search for books...</p>}
+      {status === "loading" && <p>...loading...</p>}
+      {status === "error" && <p>{error.message}</p>}
+      {status === "success" && <BooksList term={searchTerm} books={books} />}
+    </div>
+  );
 }
