@@ -17,12 +17,14 @@ export default function BookCard({ book }) {
       <p className={classes.card__title}>
         {book.volumeInfo.title ?? "No title"}
       </p>
-
       <p className={classes.card__author}>
         {book.volumeInfo.authors ?? "No authors available"}
       </p>
+      {/* the below feels sketchy, ask Alex */}
       <p className={classes.card__date}>
-        {book.volumeInfo.publishedDate ?? "No published date available"}
+        {book.volumeInfo.publishedDate
+          ? book.volumeInfo.publishedDate.slice(0, 4)
+          : "No published date available"}
       </p>
     </article>
   );

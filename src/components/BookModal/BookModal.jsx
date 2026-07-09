@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useBook } from "../../hooks/useBook";
+import classes from "./BookModal.module.scss";
 
 export const BookModal = () => {
   const { selectedBook, setSelectedBook } = useBook();
@@ -14,26 +15,37 @@ export const BookModal = () => {
   }, [selectedBook]);
 
   return (
-    <dialog ref={dialogRef} onClose={() => setSelectedBook(null)}>
+    <dialog ref={dialogRef} className={classes.dialog}>
       {selectedBook && (
         <>
-          <h3>{selectedBook.volumeInfo.title}</h3>
-          <img src={selectedBook.volumeInfo.imageLinks?.thumbnail}></img>
-          <p>{selectedBook.volumeInfo.title ?? "No title"}</p>
-          <p>
+          <h3 className={classes.dialog__title}>
+            {selectedBook.volumeInfo.title}
+          </h3>
+          <img
+            className={classes.dialog__image}
+            src={selectedBook.volumeInfo.imageLinks?.thumbnail}
+            alt={selectedBook.volumeInfo.title}
+          />
+          <p className={classes.dialog__meta}>
+            {selectedBook.volumeInfo.authors ?? "No authors available"}
+          </p>
+          <p className={classes.dialog__meta}>
             {selectedBook.volumeInfo.averageRating
-              ? `Average rating: ${selectedBook.volumeInfo.averageRating}`
-              : "No average rating"}
+              ? `Rating: ${selectedBook.volumeInfo.averageRating}/5`
+              : "No rating"}
           </p>
-          <p>{selectedBook.volumeInfo.authors ?? "No authors available"}</p>
-          <p>
-            {selectedBook.volumeInfo.publishedDate ??
-              "No published date available"}
+          <p className={classes.dialog__meta}>
+            {selectedBook.volumeInfo.publishedDate ?? "No published date"}
           </p>
-          <p>
+          <p className={classes.dialog__description}>
             {selectedBook.volumeInfo.description ?? "No description available"}
           </p>
-          <button onClick={() => setSelectedBook(null)}>Close</button>
+          <button
+            className={classes.dialog__close}
+            onClick={() => setSelectedBook(null)}
+          >
+            Close
+          </button>
         </>
       )}
     </dialog>

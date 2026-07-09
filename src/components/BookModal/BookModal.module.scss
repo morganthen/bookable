@@ -1,0 +1,58 @@
+@use "../../scss/variables/variables" as c;
+
+.dialog {
+  background: rgba(c.$surface, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid c.$border;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 90%;
+  padding: 2rem;
+  color: c.$text;
+
+  &::backdrop {
+    background: rgba(c.$bg, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  &__image {
+    width: 128px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  &__meta {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  &__close {
+    background: c.$accent;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
