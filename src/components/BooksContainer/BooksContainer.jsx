@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import BooksList from "../BooksList/BooksList";
 import { getBooksBySearchTerm } from "../../utils/getBooksBySearchTerm.js";
 import classes from "./BooksContainer.module.scss";
-import { useBook } from "../../hooks/useBook.jsx";
 
 export default function BooksContainer({ searchTerm }) {
   const [books, setBooks] = useState(null);

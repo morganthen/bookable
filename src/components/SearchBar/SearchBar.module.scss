@@ -1,6 +1,20 @@
+@use "../../scss/variables/variables" as c;
+@use "../../scss/mixins/media";
+
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+input {
+  border: c.$input-border;
+
+  @include media.md {
+    width: 240px;
+  }
+  @include media.lg {
+    width: 280px;
+  }
 }

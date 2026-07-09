@@ -10,16 +10,20 @@ export default function BookCard({ book }) {
         setSelectedBook(book);
       }}
     >
-      <img src={book.volumeInfo.imageLinks?.thumbnail}></img>
-      <p>{book.volumeInfo.title ?? "No title"}</p>
-      <p>
-        {book.volumeInfo.averageRating
-          ? `Average rating: ${book.volumeInfo.averageRating}`
-          : "No average rating"}
+      <img
+        className={classes.card__image}
+        src={book.volumeInfo.imageLinks?.thumbnail}
+      ></img>
+      <p className={classes.card__title}>
+        {book.volumeInfo.title ?? "No title"}
       </p>
-      <p>{book.volumeInfo.authors ?? "No authors available"}</p>
-      <p>{book.volumeInfo.publishedDate ?? "No published date available"}</p>
-      {/* <p>{book.description}</p> */}
+
+      <p className={classes.card__author}>
+        {book.volumeInfo.authors ?? "No authors available"}
+      </p>
+      <p className={classes.card__date}>
+        {book.volumeInfo.publishedDate ?? "No published date available"}
+      </p>
     </article>
   );
 }
