@@ -37,6 +37,17 @@ export const BookModal = () => {
           <p className={classes.dialog__meta}>
             {selectedBook.volumeInfo.publishedDate ?? "No published date"}
           </p>
+          {selectedBook.volumeInfo.previewLink ? (
+            <a
+              href={selectedBook.volumeInfo.previewLink}
+              className={classes.dialog__previewLink}
+              target="_blank"
+            >
+              Preview
+            </a>
+          ) : (
+            "No preview available"
+          )}
           <p className={classes.dialog__description}>
             {selectedBook.volumeInfo.description ?? "No description available"}
           </p>
