@@ -1,15 +1,29 @@
 @use "../../scss/variables/variables" as c;
+@use "../../scss/mixins/media";
 
 .dialog {
-  background: rgba(c.$surface, 0.5);
+  background: rgba(c.$surface, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid c.$border;
-  border-radius: 16px;
-  max-width: 480px;
+  max-width: 500px;
   width: 90%;
   padding: 2rem;
   color: c.$text;
+  border-radius: 2px;
+  position: relative;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-height: 80dvh;
+    min-height: 60dvh;
+  }
 
   &::backdrop {
     background: rgba(c.$bg, 0.6);
@@ -17,42 +31,117 @@
     -webkit-backdrop-filter: blur(4px);
   }
 
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    @include media.lg {
+      justify-content: flex-start;
+    }
+  }
+
   &__title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-family: c.$font-family;
   }
 
   &__image {
-    width: 128px;
-    height: auto;
-    border-radius: 8px;
+    width: 240px;
+    height: 360px;
+    object-fit: cover;
     margin-bottom: 1rem;
+    box-shadow: c.$shadow;
+    border-radius: 2px;
   }
 
   &__meta {
+    display: flex;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    align-items: center;
+    gap: 0.8rem;
+    font-style: italic;
+    color: c.$text-secondary;
   }
 
   &__description {
-    font-size: 0.85rem;
+    font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
     max-height: 150px;
     overflow-y: auto;
+    scrollbar-width: none;
+    @include media.lg {
+      max-height: 70%;
+    }
+  }
+
+  &__rating {
+    font-size: 0.8rem;
+  }
+
+  &__previewLink {
+    color: c.$bg;
+    font-size: 0.8rem;
+    background-color: c.$text-h;
+    border: 1px solid c.$text;
+    padding: 12px 48px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 2px;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__close {
-    background: c.$accent;
-    color: white;
+    position: absolute;
+    top: -0.9rem;
+    right: -0.5rem;
+    background: none;
+    color: c.$text-secondary;
     border: none;
     padding: 0.5rem 1.5rem;
-    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 4rem;
+    font-weight: 100;
 
     &:hover {
       opacity: 0.85;
     }
+  }
+
+  @include media.md {
+    max-width: 580px;
+  }
+
+  @include media.lg {
+    &[open] {
+      flex-direction: row;
+      align-items: stretch;
+    }
+    max-width: 700px;
+
+    &__left {
+      flex-shrink: 0;
+    }
+    &__right {
+      flex-grow: 1;
+    }
+  }
+  @include media.xl {
+    max-width: 800px;
   }
 }

@@ -14,7 +14,7 @@ function App() {
       <div>
         <Header>
           <SearchBar
-            placeholder="e.g. The Secret, Harry Potter, Book of Fire and Ice"
+            placeholder="Start typing to search..."
             id="search-bar"
             onSearch={setSearchTerm}
           />

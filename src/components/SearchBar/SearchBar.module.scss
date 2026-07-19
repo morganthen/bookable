@@ -10,6 +10,8 @@
 
 input {
   border: c.$input-border;
+  background-color: c.$input-bg;
+  color: c.$text;
 
   @include media.md {
     width: 240px;

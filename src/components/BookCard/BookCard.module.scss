@@ -8,26 +8,32 @@
   justify-content: space-between;
   padding: 1rem;
   border: 1px solid c.$accent-border;
-  border-radius: 12px;
-  background-color: c.$accent-secondary;
-  color: c.$text-h;
+  border-radius: 2px;
+  background-color: c.$surface;
+  color: c.$text;
   box-shadow: c.$shadow;
-  width: 240px;
-  height: 400px;
-  overflow: hidden;
+  width: 300px;
+  height: 480px;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
 
   @include media.sm {
-    width: 240px;
-    height: 360px;
+    width: 300px;
+    height: 480px;
   }
 
   &__title {
+    font-family: c.$font-family;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: c.$accent;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
+    height: 12rem;
     -webkit-box-orient: vertical;
-    overflow: hidden;
     text-align: center;
     margin-top: 0.5rem;
+    text-transform: uppercase;
   }
 
   &__image {
@@ -35,20 +41,49 @@
     height: 180px;
     object-fit: cover;
     flex-shrink: 0;
-    box-shadow: 7px 8px 10px -1px c.$shadow;
+    box-shadow: c.$shadow;
+    border-radius: 2px;
+    filter: grayscale(100%);
+    transform: scale(1);
+    transition:
+      filter 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+  }
+
+  img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+  }
+
+  &__meta {
+    text-align: center;
+    font-size: 0.8rem;
   }
 
   &__author {
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    text-align: center;
+    text-transform: uppercase;
+    font-style: italic;
     margin-top: auto;
+    color: c.$text-secondary;
   }
 
   &__date {
+    font-size: 0.8rem;
+  }
+
+  &__description {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: 0.8rem;
   }
+}
+
+.card:hover {
+  transform: scale(1.03);
 }

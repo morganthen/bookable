@@ -1,2 +1,7 @@
 @use "./scss/normalize";
 @use "./scss/variables/variables" as *;
+
+body {
+  font-family: "Hanken Grotesk", sans-serif;
+  color: $text;
+}
