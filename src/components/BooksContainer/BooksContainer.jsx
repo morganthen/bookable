@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import BooksList from "../BooksList/BooksList";
 import { getBooksBySearchTerm } from "../../utils/getBooksBySearchTerm.js";
 import classes from "./BooksContainer.module.scss";
+import RecommendedBooks from "../RecommendedBooks/RecommendedBooks.jsx";
 
-export default function BooksContainer({ searchTerm }) {
+export default function BooksContainer({
+  searchTerm,
+  onSetHasSearched,
+  onSearch,
+  hasSearched,
+}) {
   const [books, setBooks] = useState(null);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
@@ -19,10 +25,12 @@ export default function BooksContainer({ searchTerm }) {
       .then((data) => {
         setStatus("success");
         setBooks(data);
+        onSetHasSearched(true);
       })
       .catch((err) => {
         setStatus("error");
         setError(err);
+        onSetHasSearched(true);
       });
   }, [searchTerm]);
 
@@ -32,7 +40,9 @@ export default function BooksContainer({ searchTerm }) {
 
   return (
     <div className={classes.container}>
-      {status === "idle" && <p>Search for books...</p>}
+      {status === "idle" && hasSearched === false && (
+        <RecommendedBooks onSearch={onSearch} />
+      )}
       {status === "loading" && <p>...loading...</p>}
       {status === "error" && <p>{error.message}</p>}
       {status === "success" && <BooksList term={searchTerm} books={books} />}

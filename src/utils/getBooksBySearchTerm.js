@@ -1,5 +1,7 @@
-export const getBooksBySearchTerm = async (term) => {
-  const response = await fetch(`/api/books?q=${encodeURIComponent(term)}`);
+export const getBooksBySearchTerm = async (term, { maxResults } = {}) => {
+  const response = await fetch(
+    `/api/books?q=${encodeURIComponent(term)}&maxResults=${maxResults || 20}`,
+  );
 
   if (!response.ok) {
     throw new Error("Failed to Fetch");

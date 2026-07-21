@@ -8,6 +8,12 @@
   justify-content: center;
 }
 
+.inputRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 input {
   border: c.$input-border;
   background-color: c.$input-bg;
@@ -18,5 +24,24 @@ input {
   }
   @include media.lg {
     width: 280px;
+  }
+}
+
+.submitBtn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: c.$accent;
+  color: c.$bg;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.85;
   }
 }
