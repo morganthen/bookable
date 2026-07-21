@@ -31,8 +31,7 @@ function RecommendedBooks({ onSearch }) {
     <section className={classes.hero}>
       <h2 className={classes.hero__heading}>Discover Your Next Read</h2>
       <p className={classes.hero__tagline}>
-        Search thousands of books, save your favourites, and find your next
-        page-turner.
+        Search thousands of books and find your next page-turner.
       </p>
       <SearchBar
         placeholder="Search by title, author, or keyword..."

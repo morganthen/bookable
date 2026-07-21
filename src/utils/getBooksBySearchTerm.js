@@ -4,7 +4,7 @@ export const getBooksBySearchTerm = async (term, { maxResults } = {}) => {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to Fetch");
+    throw new Error("Failed to fetch");
   }
 
   const data = await response.json();

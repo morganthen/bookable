@@ -44,7 +44,7 @@ export default function SearchBar({
         ></input>
         {trigger === "manual" && (
           <button type="submit" className={classes.submitBtn}>
-            Search
+            Go
           </button>
         )}
       </div>

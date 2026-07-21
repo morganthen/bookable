@@ -30,7 +30,8 @@
   }
 
   &__input {
-    min-width: 450px;
+    min-width: 340px;
+    max-width: 680px;
     height: 56px;
     font-size: 1.1rem;
     padding: 0 90px 0 1.25rem;
@@ -41,7 +42,7 @@
 
     &::placeholder {
       color: c.$text-secondary;
-      font-size: 0.95rem;
+      font-size: 0.8rem;
     }
 
     &:focus {
